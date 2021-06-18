@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en"><!-- Basic -->
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+     <!-- Site Metas -->
+    <title>Yamifood Restaurant</title>  
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">    
+	<!-- Site CSS -->
+    <link rel="stylesheet" href="css/style.css">    
+	<!-- Pickadate CSS -->
+    <link rel="stylesheet" href="css/classic.css">    
+	<link rel="stylesheet" href="css/classic.date.css">    
+	<link rel="stylesheet" href="css/classic.time.css"> 
+  
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyCdtENWfPnk_-AJf5ivvOG5Jkq0sEeNXBs",
+    authDomain: "webdatabase-3e3cc.firebaseapp.com",
+    projectId: "webdatabase-3e3cc",
+    storageBucket: "webdatabase-3e3cc.appspot.com",
+    messagingSenderId: "484955984782",
+    appId: "1:484955984782:web:6481b8cc7878bc59ea0adf",
+    measurementId: "G-BYE36QKN45"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+<script src="js/private.js"></script>
+</head>
+
+<body onload="isLoaded()">
+	
+<!-- Start header -->
+<header class="top-navbar">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container">
+			<a class="navbar-brand" href="index.html">
+				<img class="img_fodd_title" src="images/logo.png" alt="" />
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+			  <span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbars-rs-food">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
+						<li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+						<li class="nav-item"><a class="nav-link" href="reservation.html">Đặt bàn</a></li>
+						<li class="nav-item"><a class="nav-link" href="about.html">Giới thiệu</a></li>
+						<li class="nav-item"><a class="nav-link" href="cart.html">Giỏ hàng</a></li>
+						<li class="nav-item active"><a class="nav-link" href="contact.html">Liên Hệ</a></li>	
+				</ul>
+			</div>
+		</div>
+		<div class="signup_signin" >
+			<li class="sign_in" id="sign_in_user" onclick="sign_in()" ><a class="nav-link" href="sign_in.html"> Đăng nhập</a></li>
+			<li id="name_user" style="margin-top: 8px;"></li>
+			<li class="sign_in" id="sign_out_user"  onclick="sign_out()" ><a class="nav-link" href="index.html">Đăng xuất</a></li>
+			<li class="sign_in" id="adminPage" ><a class="nav-link" href="admin/production/Account.html" >Quản trị</a></li>
+		</div>
+	</nav>
+</header>
+<!-- End header -->
+	
+	<!-- Start All Pages -->
+	<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>Đặt bàn</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End All Pages -->
+	
+	<!-- Start Reservation -->
+	<div class="reservation-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2>Đặt bàn</h2>
+						<p>Quý khách vui lòng đặt bàn trước để có trải nghiệm thưởng thức ẩm thực tốt nhất tại Yamifood Restaurant .</p>
+						<image style="width:100px; height: 100px; margin-top: 0;" src="images/chef-mascot-logo_138200-20.jpg"></image>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 col-xs-12">
+					<div class="contact-block">
+						<form id="contactForm">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="col-md-12">
+										<div class="form-group">
+											<input placeholder="Chọn ngày..." id="input_date" class="datepicker picker__input form-control" name="date" type="date" value="" equired data-error="Mục này không được trống">
+											<div class="help-block with-errors"></div>
+										</div>                                 
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input placeholder="Chọn giờ" type="time" id="input_time" class="time form-control picker__input" required data-error="Mục này không được để trống">
+											<div class="help-block with-errors"></div>
+										</div>                                 
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<select class="custom-select d-block form-control" id="person" required data-error="Mục này không được để trống">
+											  <option disabled selected>Chọn số người...</option>
+											  <option value="1">1</option>
+											  <option value="2">2</option>
+											  <option value="3">3</option>
+											  <option value="4">4</option>
+											  <option value="5">5</option>
+											  <option value="6">6</option>
+											  <option value="7">7</option>
+											  <option value="8">8</option>
+											  <option value="9">9</option>
+											  <option value="10">10</option>
+											</select>
+											<div class="help-block with-errors"></div>
+										</div> 
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="text" class="form-control" id="name" name="name" placeholder="Tên của bạn..." required data-error="Please enter your name">
+											<div class="help-block with-errors"></div>
+										</div>                                 
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="text" placeholder="Email của bạn..." id="email" class="form-control" name="email" required data-error="Please enter your email">
+											<div class="help-block with-errors"></div>
+										</div> 
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="text" placeholder="Số điện thoại..." id="phone" class="form-control" name="phone" required data-error="Please enter your Numbar">
+											<div class="help-block with-errors"></div>
+										</div> 
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="submit-button text-center">
+										<button class="btn btn-common" id="submit" type="submit">Đặt bàn</button>
+										<div id="msgSubmit" class="h3 text-center hidden"></div> 
+										<div class="clearfix"></div> 
+									</div>
+								</div>
+							</div>            
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Reservation -->
+	
+	
+	
+	<!-- Start Contact info -->
+<div class="contact-imfo-box">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<i class="fa fa-volume-control-phone"></i>
+				<div class="overflow-hidden">
+					<h4>Phone</h4>
+					<p class="lead">
+						0389649522
+					</p>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<i class="fa fa-envelope"></i>
+				<div class="overflow-hidden">
+					<h4>Email</h4>
+					<p class="lead">
+						quynhthptlc@gmail.com
+					</p>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<i class="fa fa-map-marker"></i>
+				<div class="overflow-hidden">
+					<h4>Location</h4>
+					<p class="lead">
+						Cẩm Sơn - Cẩm Phả - Quảng Ninh
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Contact info -->
+	
+	<!-- Start Footer -->
+<footer class="footer-area bg-f">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3 col-md-6">
+				<h3>Về chúng tôi</h3>
+				<p>Sở hữu chuỗi nhà hàng trải dài khắp cả nước tại Thành phố Hồ Chí Minh, Hà Nội, Hải Phòng và Đà Nẵng, Yamifood Restaurant là nơi cung cấp dịch vụ ăn uống đạt tiêu chuẩn tốt nhất với mức giá hợp lý. Ngoài ra, với đội ngũ nhân viên giao hàng riêng, chúng tôi cũng mang đến cho quý khách dịch vụ giao thức ăn nhanh và hiệu quả</p>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<h3>Thời gian mở cửa</h3>
+				<p><span class="text-color">Thứ 2: </span>Closed</p>
+				<p><span class="text-color">Thứ 3 - Thứ 4 :</span> 9:Am - 10PM</p>
+				<p><span class="text-color">Thứ 5 - Thứ 6 :</span> 9:Am - 10PM</p>
+				<p><span class="text-color">Thứ 7 - Chủ Nhật :</span> 5:PM - 10PM</p>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<h3>Thông tin liên lạc</h3>
+				<p class="lead">Cẩm Sơn - Cẩm Phả - Quảng Ninh</p>
+				<p class="lead">0389649522</p>
+				<p>quynhthptlc@gmail.com</p>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<h3>Đăng ký</h3>
+				<div class="subscribe_form">
+					<form class="subscribe_form">
+						<input name="EMAIL" id="subs-email" class="form_input" placeholder="Email Address..." type="email">
+						<button type="submit" class="submit">SUBSCRIBE</button>
+						<div class="clearfix"></div>
+					</form>
+				</div>
+				<ul class="list-inline f-social">
+					<li class="list-inline-item"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+					<li class="list-inline-item"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+					<li class="list-inline-item"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+					<li class="list-inline-item"><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+					<li class="list-inline-item"><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<div class="copyright">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<p class="company-name">All Rights Reserved. &copy; 2021 <a href="#">Yamifood Restaurant</a> Design By : 
+				<a href="https://html.design/">Quynh - Trường</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</footer>
+<!-- End Footer -->	
+	
+	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+	<!-- ALL JS FILES -->
+	
+	<script src="js/form-validator.min.js"></script>
+	<script src="js/contact-form-script.js"></script>
+	<script src="js/custom.js"></script>
+	<script src="jsCustom/reservation.js"></script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	
+
+	
+	
+    <!-- ALL PLUGINS -->
+    
+
+</body>
+</html>

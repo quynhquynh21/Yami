@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Yamifood Restaurant</title>
+
+  <!-- Bootstrap -->
+  <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- Font Awesome -->
+  <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Custom Theme Style -->
+  <link href="../build/css/custom.min.css" rel="stylesheet">
+  <link href="../build/css/custom.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-analytics.js"></script>
+
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyCdtENWfPnk_-AJf5ivvOG5Jkq0sEeNXBs",
+    authDomain: "webdatabase-3e3cc.firebaseapp.com",
+    projectId: "webdatabase-3e3cc",
+    storageBucket: "webdatabase-3e3cc.appspot.com",
+    messagingSenderId: "484955984782",
+    appId: "1:484955984782:web:6481b8cc7878bc59ea0adf",
+    measurementId: "G-BYE36QKN45"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+</head>
+
+<body class="nav-md" onload="isLoaded()">
+  <div class="background" id="loading" data-aos="flip-right">
+    <div id="container" >
+      <div id="success-box">
+        <div class="dot"></div>
+        <div class="dot two"></div>
+        <div class="face">
+          <div class="eye"></div>
+          <div class="eye right"></div>
+          <div class="mouth happy"></div>
+        </div>
+        <div class="shadow scale"></div>
+       
+        <button class="button-box" onclick="success()" ><h1 class="green">Thành công</h1></button>
+      </div>
+      <!-- <div id="error-box" style="display:none">
+        <div class="dot"></div>
+        <div class="dot two"></div>
+        <div class="face2">
+          <div class="eye"></div>
+          <div class="eye right"></div>
+          <div class="mouth sad"></div>
+        </div>
+        <div class="shadow move"></div>
+       
+        <button class="button-box"><h1 class="red">Thử lại</h1></button>
+      </div> -->
+    </div>
+  </div>
+  
+  <div class="container body">
+    <div class="main_container">
+      <div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
+          <div class="navbar nav_title" style="border: 0;">
+            <a href="../../index.html"><img src="../../images/logo.png" alt=""></a>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <!-- menu profile quick info -->
+          <div class="profile clearfix">
+            <div class="profile_pic">
+              <img src="../../images/dung.jpg" alt="..." class="img-circle profile_img">
+            </div>
+            <div class="profile_info">
+              <span>Xin chào,</span>
+              <h2>Quynh Bùi</h2>
+            </div>
+          </div>
+          <!-- /menu profile quick info -->
+
+          <br />
+
+          <!-- sidebar menu -->
+          <!-- sidebar menu -->
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+              <h3>General</h3>
+              <ul class="nav side-menu">
+                <li><a><i class="fa fa-home"></i> Quản lí Khách hàng <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="Account.html">Quản lí tài khoản</a></li>
+                    <li><a href="bill.html">Quản lí hoá đơn</a></li>
+                    <li><a href="reservation_admin.html">Quản lí đặt bàn</a></li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-edit"></i> Quản lí sản phẩm <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="typeProduct.html">Quản lí theo loại sản phẩm</a></li>
+                    <li><a href="Customer_reviews.html">Đánh giá của khách hàng</a></li>
+                    <li><a href="new_product.html">Món ăn mới</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- /sidebar menu -->
+        </div>
+      </div>
+      <!-- page content -->
+      <div class="right_col" role="main">
+        <div class="page-title">
+          <div class="title_left">
+            <h3>Quản lí tài khoản</h3>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+          <table class="table table-striped projects">
+            <thead>
+              <tr>
+                <th style="width: 20%">Tên người dùng</th>
+                <th style="width: 20%">Tài khoản</th>
+                <th style="width: 20%">Mật khẩu</th>
+                <th style="width: 20%">Chức năng</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <input id="userName" type="text">
+                </td>
+                <td>
+                  <input id="account" type="text">
+                </td>
+                <td>
+                  <input id="password" type="text">
+                </td>
+                <td>
+                  <a id="update" href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
+                  <a id="remove" href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xoá</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row" style="margin-top:150px">
+          <table class="table table-striped projects">
+            <thead>
+              <tr>
+                <th style="width: 20%">Tên người dùng</th>
+                <th style="width: 20%">Tài khoản</th>
+                <th style="width: 20%">Mật khẩu</th>
+                <th style="width: 20%">Loại tài khoản</th>
+              </tr>
+            </thead>
+            <tbody id="acc">
+              <tr>
+                <td >
+                  <div id="name">
+                   
+                  </div>
+                </td>
+                <td>
+                  <div id="email">
+                  
+                  </div>
+                </td>
+                <td class="pass">
+                  <div id="uid">
+                  
+                  </div>
+                </td>
+                <td>
+                  <div id="role">
+                  
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- /page content -->
+
+    <!-- footer content -->
+    <footer>
+      <div class="pull-right">
+        All Rights Reserved. &copy; 2021 <a href="https://colorlib.com">Quynh - Trường</a>
+      </div>
+      <div class="clearfix"></div>
+    </footer>
+    <!-- /footer content -->
+  </div>
+  </div>
+
+  <!-- jQuery -->
+  <script src="../vendors/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- FastClick -->
+  <!-- bootstrap-progressbar -->
+
+  <!-- Custom Theme Scripts -->
+  <script src="../build/js/custom.min.js"></script>
+  <script src="../../jsCustom/loader.js"></script>
+  <script src="../build/js/account.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+	<script>
+		AOS.init({
+			duration:1500
+		});
+	</script>
+</body>
+
+</html>
