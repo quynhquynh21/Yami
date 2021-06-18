@@ -112,3 +112,31 @@ function success() {
     window.location.reload();
 }
 
+const customerReview = document.getElementById('customerReview');
+loadCustomerPreview();
+function loadCustomerPreview() {
+
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user != null) {
+            database.collection('Contact').get()
+                .then(snapshot => {
+                    snapshot.forEach(form => {
+                        itemsLoad = form.data()
+                        var html = document.getElementById("customerReview");
+                        html.insertAdjacentHTML("beforeend", ` 
+                        <div class="carousel-item text-center ">
+                        <div class="img-box p-1 border rounded-circle m-auto">
+                            <img class="d-block w-100 rounded-circle" src="images/anh-dai-dien-FB-200.jpg" alt="">
+                        </div>
+                        <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">${itemsLoad.name}</strong></h5>
+                        <h6 class="text-dark m-0">Khách hàng</h6>
+                        <p class="m-0 pt-3">${itemsLoad.message}</p>
+                    </div>
+        `)
+                    })
+                })
+                .catch(error => { console.log(error) })
+
+        }
+    });
+}
