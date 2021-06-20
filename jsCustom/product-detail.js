@@ -134,9 +134,6 @@ function success() {
 const customerReview = document.getElementById('customerReview');
 loadCustomerPreview();
 function loadCustomerPreview() {
-
-    firebase.auth().onAuthStateChanged(function (user) {
-        if (user != null) {
             database.collection('Contact').get()
                 .then(snapshot => {
                     snapshot.forEach(form => {
@@ -155,6 +152,4 @@ function loadCustomerPreview() {
                     })
                 })
                 .catch(error => { console.log(error) })
-        }
-    });
 }
