@@ -91,19 +91,38 @@ addcard.addEventListener('click', e => {
     e.preventDefault();
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-                database.collection('Cart').doc(user.uid).collection('Giohang').add({
-                imageProductCart: imageProductDetails.src,
-                nameCart_Product: title.innerText,
-                priceCart_Product: parseInt(price.innerText),
-                NameUser: user.displayName,
-                count: parseInt(count.value) 
-            }).then(() => {
-                alert('Thêm thành công');
-                window.location='menu.html'
+            database.collection('Cart').doc(user.uid).collection('Giohang').get()
+            .then(snapshot => {
+                var kt=true;
+                snapshot.forEach(form => {
+                    itemsLoad = form.data()
+                    if(uid == form.id){
+                        kt=false;
+                    }
+                })
+                if(kt){
+                    database.collection('Cart').doc(user.uid).collection('Giohang').doc(uid).set({
+                        imageProductCart: imageProductDetails.src,
+                        nameCart_Product: title.innerText,
+                        priceCart_Product: parseInt(price.innerText),
+                        NameUser: user.displayName,
+                        count: parseInt(count.value)
+                    }).then(() => {
+                        alert('Thêm thành công');
+                        window.location = 'menu.html'
+                    })
+                        .catch(() => { console.log('Thêm thất bại') })
+                }
+                else{
+                    alert('Đã tồn tại trong giỏ hàng')
+                }
             })
-                .catch(() => { console.log('Thêm thất bại') })
-        } else {
-            window.location='sign_in.html'
+            .catch(error => { console.log(error) })
+
+           
+        }
+        else {
+            window.location = 'sign_in.html'
         }
     })
 })
@@ -136,7 +155,6 @@ function loadCustomerPreview() {
                     })
                 })
                 .catch(error => { console.log(error) })
-
         }
     });
 }

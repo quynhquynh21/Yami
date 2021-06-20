@@ -138,7 +138,9 @@ function loadProduct() {
             </div>
             </div>
                       `)
+                      console.log(form.id)
         })
+      
         sumPrice();
       })
       .catch(error => { console.log(error) })
@@ -228,5 +230,5 @@ payCart.addEventListener('click', e => {
   })
 })
 function success() {
-  window.location='sign_in.html';
+  window.location.reload();
 }
